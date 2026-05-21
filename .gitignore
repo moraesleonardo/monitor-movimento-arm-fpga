@@ -1,0 +1,19 @@
+# Arquivos temporários
+*.log
+*.tmp
+*.bak
+*~
+
+# Simulação
+*.vcd
+sim_classificador
+
+# Gowin - diretórios gerados
+**/impl/temp/
+**/impl/pnr/
+**/impl/gwsynthesis/*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
+

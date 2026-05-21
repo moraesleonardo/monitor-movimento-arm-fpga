@@ -1,0 +1,111 @@
+//
+//Written by GowinSynthesis
+//Tool Version "V1.9.12.02_SP2"
+//Thu May 21 19:46:52 2026
+
+//Source file index table:
+//file0 "\/home/leonardo-moraes/Downloads/Gowin_V1.9.12.02_SP2_linux/IDE/bin/tp1_classificador_movimento/src/classificador_movimento.v"
+//file1 "\/home/leonardo-moraes/Downloads/Gowin_V1.9.12.02_SP2_linux/IDE/bin/tp1_classificador_movimento/src/classificador_movimento_tb.v"
+`timescale 100 ps/100 ps
+module classificador_movimento (
+  nivel_movimento,
+  estado
+)
+;
+input [7:0] nivel_movimento;
+output [1:0] estado;
+wire estado_d_1_6;
+wire estado_d_1_7;
+wire estado_d_0_5;
+wire [7:0] nivel_movimento_d;
+wire [1:0] estado_d;
+wire VCC;
+wire GND;
+  IBUF nivel_movimento_0_ibuf (
+    .O(nivel_movimento_d[0]),
+    .I(nivel_movimento[0]) 
+);
+  IBUF nivel_movimento_1_ibuf (
+    .O(nivel_movimento_d[1]),
+    .I(nivel_movimento[1]) 
+);
+  IBUF nivel_movimento_2_ibuf (
+    .O(nivel_movimento_d[2]),
+    .I(nivel_movimento[2]) 
+);
+  IBUF nivel_movimento_3_ibuf (
+    .O(nivel_movimento_d[3]),
+    .I(nivel_movimento[3]) 
+);
+  IBUF nivel_movimento_4_ibuf (
+    .O(nivel_movimento_d[4]),
+    .I(nivel_movimento[4]) 
+);
+  IBUF nivel_movimento_5_ibuf (
+    .O(nivel_movimento_d[5]),
+    .I(nivel_movimento[5]) 
+);
+  IBUF nivel_movimento_6_ibuf (
+    .O(nivel_movimento_d[6]),
+    .I(nivel_movimento[6]) 
+);
+  IBUF nivel_movimento_7_ibuf (
+    .O(nivel_movimento_d[7]),
+    .I(nivel_movimento[7]) 
+);
+  OBUF estado_0_obuf (
+    .O(estado[0]),
+    .I(estado_d[0]) 
+);
+  OBUF estado_1_obuf (
+    .O(estado[1]),
+    .I(estado_d[1]) 
+);
+  LUT4 estado_d_1_s (
+    .F(estado_d[1]),
+    .I0(estado_d_1_6),
+    .I1(nivel_movimento_d[6]),
+    .I2(estado_d_1_7),
+    .I3(nivel_movimento_d[7]) 
+);
+defparam estado_d_1_s.INIT=16'hFF80;
+  LUT4 estado_d_0_s (
+    .F(estado_d[0]),
+    .I0(estado_d_0_5),
+    .I1(estado_d_1_7),
+    .I2(nivel_movimento_d[6]),
+    .I3(estado_d[1]) 
+);
+defparam estado_d_0_s.INIT=16'h00F4;
+  LUT4 estado_d_1_s0 (
+    .F(estado_d_1_6),
+    .I0(nivel_movimento_d[1]),
+    .I1(nivel_movimento_d[0]),
+    .I2(nivel_movimento_d[2]),
+    .I3(nivel_movimento_d[3]) 
+);
+defparam estado_d_1_s0.INIT=16'hFE00;
+  LUT2 estado_d_1_s1 (
+    .F(estado_d_1_7),
+    .I0(nivel_movimento_d[5]),
+    .I1(nivel_movimento_d[4]) 
+);
+defparam estado_d_1_s1.INIT=4'h8;
+  LUT4 estado_d_0_s0 (
+    .F(estado_d_0_5),
+    .I0(nivel_movimento_d[0]),
+    .I1(nivel_movimento_d[1]),
+    .I2(nivel_movimento_d[2]),
+    .I3(nivel_movimento_d[3]) 
+);
+defparam estado_d_0_s0.INIT=16'h0007;
+  VCC VCC_cZ (
+    .V(VCC)
+);
+  GND GND_cZ (
+    .G(GND)
+);
+  GSR GSR (
+    .GSRI(VCC) 
+);
+endmodule /* classificador_movimento */
